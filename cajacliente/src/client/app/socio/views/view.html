@@ -1,0 +1,35 @@
+<section class="mainbar" data-ng-init="vm.toViewSocio()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Socio View
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.socio" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/socio/{{vm.socio.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Edit
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.socio">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/socio">
+          <i class="glyphicon glyphicon-list"></i> List Socios
+        </a>
+         <a class="btn btn-primary" ng-click="vm.aperturar()"  href="/cuent/create">
+          <i class="glyphicon glyphicon-list"></i> Aperturar cuenta
+        </a>
+
+
+      </div>
+
+    </div>
+  </div>
+
+</section>

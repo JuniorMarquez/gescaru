@@ -1,0 +1,30 @@
+<section class="mainbar" data-ng-init="vm.toViewCuent()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Cuent View
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.cuent" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/cuent/{{vm.cuent.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Edit
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove()" item="vm.cuent">
+          <i class="glyphicon glyphicon-remove-circle"></i> Delete
+        </a>
+        <a class="btn btn-primary" href="/cuent">
+          <i class="glyphicon glyphicon-list"></i> List Cuents
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

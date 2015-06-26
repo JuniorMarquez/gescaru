@@ -1,0 +1,50 @@
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+
+
+</script>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      New Cuent
+    </div>
+    <div class="panel-body">
+<form name="vm.form" data-ng-submit="vm.create()" novalidate>
+    <label>
+       Nombre
+       <input type="text" name="titular"  id"titular" ng-model="vm.cuent.titular" disabled=disabled required>
+
+    </label>
+    <div role="alert">
+      <span class="error" ng-show="vm.form.cuent.titular.$error.required">
+       Required!</span>
+    </div>
+    <label>
+       Numero de Cuenta:
+       <input type="text" name="numeroCuenta" ng-model="vm.cuent.numeroCuenta"
+       ng-minlength="3" ng-maxlength="10">
+    </label>
+    <div role="alert">
+      <span class="error" ng-show="vm.form.cuent.numeroCuenta.$error.minlength">
+        Too short!</span>
+      <span class="error" ng-show="vm.form.cuent.numeroCuenta.$error.maxlength">
+        Too long!</span>
+    </div>        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Save
+            </button>
+            <a class="btn btn-danger" href="/cuent">
+              <i class="glyphicon glyphicon-remove"></i> Cancel
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  
+
+</section>
