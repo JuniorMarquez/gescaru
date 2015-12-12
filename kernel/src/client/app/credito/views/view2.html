@@ -1,0 +1,77 @@
+<section class="mainbar" data-ng-init="vm.toViewCredito()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de Credito 
+    </div>
+    <div class="panel-body">
+<!--
+      <form novalidate>
+        <formly-form model="vm.credito" fields="vm.formFields">
+        </formly-form>
+     -->
+      <form name="vm.form" ng-model="vm.credito" novalidate>
+          Tipo de credito: {{vm.credito.tipoDeCredito}}
+           </br>id Credito: {{vm.credito.id}}
+            </br>Socio: {{vm.informacion.nombres}}
+            </br>Fecha: {{vm.credito.createdAt  | date}}
+</br></br>
+<label> Monto: </label> Bs.F. <span class="label label-warning">  {{vm.credito.monto}}</span> <label> Abonado: Bs.F.</label> 
+<span class="label label-warning"> {{vm.pagos|sumByKey:'monto'}}</span> 
+<label>Restante: </label> <span class="label label-warning"> {{(vm.credito.monto) - (vm.pagos|sumByKey:'monto')}}</span>
+
+      </form>
+
+      <hr/>
+      <div>
+       <!-- <a class="btn btn-success" href="/credito/{{vm.credito.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger" title="Borrar" ng-really-message="Esta usted seguro ?" ng-really-click="vm.remove()" item="vm.credito">
+          <i class="glyphicon glyphicon-remove-circle"></i> Borrar
+        </a>
+        <a class="btn btn-primary" href="/credito">
+          <i class="glyphicon glyphicon-list"></i> Listado de Creditos
+        </a>-->
+<a type="button" ng-click="vm.aperturar()"class="btn btn-success" href="/pago/create5">
+          <i class="glyphicon glyphicon-open"></i> Registrar pago de Interes
+        </a>
+       
+         <a type="button" ng-click="vm.aperturar()"class="btn btn-success" href="/pago/create4">
+          <i class="glyphicon glyphicon-open"></i> Registrar el pago del credito en su totalidad
+        </a>
+      </div>
+
+     </br></br>PAGOS:</br></br>
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="dato in vm.pagos">
+              <td data-title="'Fecha'" ><center>{{dato.createdAt | date}}</center></td>
+
+
+             
+
+
+              <td data-title="'Monto'">Bs.F. {{dato.monto}}</td>
+              <td>
+              <!--
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="View" href="/operaciones-cuenta-ahorro/{{pais.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Edit" href="/operaciones-cuenta-ahorro/{{pais.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(operacionesCuentaAhorro)" item="operacionesCuentaAhorro">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+                  -->
+              </td>
+          </tr>
+      </table>
+
+
+    </div>
+  </div>
+
+</section>

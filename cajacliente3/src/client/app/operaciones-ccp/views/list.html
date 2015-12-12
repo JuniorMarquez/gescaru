@@ -1,0 +1,56 @@
+<section class="mainbar">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Listado de Operaciones con C.C.P
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+        <!--<a type="button" class="btn btn-success" href="/operaciones-ccp/create">
+          <i class="glyphicon glyphicon-open"></i> New OperacionesCcp
+        </a>
+
+
+//filter="{ 'createdAt': 'text' }"
+
+//
+filter="{ 'monto': 'text' }"
+
+        -->
+
+
+
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="operacionesCcp in $data">
+              <td data-title="'Fecha'" sortable="'createdAt'" >{{operacionesCcp.createdAt | date:'dd'}}</td>
+              <td data-title="'Monto'" sortable="'monto'" >{{operacionesCcp.monto}}</td>
+              <td data-title="'Cantidad'" sortable="'cantidad'" filter="{'cantidad': 'text'}">{{operacionesCcp.cantidad}}</td>
+              <td>
+              <td data-title="'Tipo de Op.'" sortable="'tipoOperacion'" filter="{'tipoOperacion': 'text'}">{{operacionesCcp.tipoOperacion}}</td>
+              <td>
+
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="Ver Detalles" href="/operaciones-ccp/{{operacionesCcp.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                     <!-- <a class="btn btn-default btn-xs" title="Editar" href="/operaciones-ccp/{{operacionesCcp.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>-->
+                      <!--<a class="btn btn-danger btn-xs" title="Borrar"  ng-click="vm.remove(operacionesCcp)" item="operacionesCcp">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>-->
+                       <!--<a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta Usted seguro ?" ng-really-click="vm.remove(operacionesCcp)" item="operacionesCcp">
+                        <span class="glyphicon glyphicon-remove-circle"></span>-->
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+</section>

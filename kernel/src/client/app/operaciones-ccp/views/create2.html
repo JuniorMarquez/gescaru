@@ -1,0 +1,131 @@
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      Traspaso de C.C.P
+    </div>
+    <div class="panel-body">
+
+<form name="vm.form"  data-ng-submit="vm.create2()" novalidate>
+<div class="row">
+<div class="pull-right">
+
+
+  <label><i class="fa fa-cc"></i>  Cant. C.C.P: </label>
+
+
+    {{vm.operaciones |sumByKey2:'tipoOperacion':'cantidad'}} u.
+
+
+</div>
+
+      <label>
+       <!--Tipo de Operacion: --></label>
+       <input type="hidden" name="tipoOperacion"  id="tipoOperacion" ng-model="vm.operacionesCcp.tipoOperacion" disabled="disabled" readonly="readonly">
+        </br>
+     <label>
+      Cantidad:  </label>
+       <input type="number" name="cantidad" id="cantidad" ng-model="vm.operacionesCcp.cantidad"
+       onchange="calculo()" min="1"max="{{vm.operaciones |sumByKey2:'tipoOperacion':'cantidad'}}">
+    </br> </br> </br>
+    <label>
+      Monto: </label> Bs.F. {{vm.operacionesCcp.cantidad * vm.configuracion.precioCcp}},00 
+       <input type="hidden" name="monto" id="monto" ng-model="vm.operacionesCcp.monto" readonly="readonly" >
+   
+
+    <label>
+      <!--Id Socio:-->  </label>
+       <input type="hidden" name="id_socio" readonly="readonly" ng-model="vm.operacionesCcp.id_socio ">
+ </br>
+
+     
+       <label>
+         Indique la cedula del socio destino
+         <input type="text" name="cedula" ng-model="vm.cedula" >
+       </label><i class="glyphicon glyphicon-search"></i>
+       <input type="button" class="btn btn-success"  value="Buscar" ng-click="vm.buscar()" /> 
+             <ul>
+              Sr(a). {{vm.info[0].nombres}} {{vm.info[0].apellidos}} Cedula: {{vm.info[0].cedula}}
+     
+  </ul>
+
+</br>
+    <label>
+     
+    
+    <label>
+     <!--Id Socio2: --> </label>
+       <input type="hidden" name="id_socio2" readonly="readonly" ng-model="vm.operacionesCcp.id_socio2" required="required">
+     <!-- Id Usuario:  -->
+       <input type="hidden" name="id_usuario" ng-model="vm.operacionesCcp.id_usuario" value="1"readonly="readonly">
+    </br>
+   
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/socio/{{vm.operacionesCcp.id_socio}}">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+        
+<script language="javascript">  
+function calculo(){
+   $http.get('http://localhost:1337/config/55a95c87ebe973e1080ff5f0').success(function(respuesta3){
+            //console.log("res:", respuesta);
+            vm.configuracion = respuesta3; });
+   
+   var a = document.getElementById("cantidad");  
+    var b = vm.configuracion.precioCcp;  
+    
+   // aqui puedes hacer validaciones para asegurarte que los valores de A y B sean numeros, etc  
+   c.value = a.value * b; 
+   vm.operacionesCcp.monto = c.value;
+   vm.operacionesCcp.precioCcp = vm.configuracion.precioCcp; 
+  } 
+
+  </script>
+      </form>
+
+
+
+</div>
+  </div>
+
+
+  <!-- <div class="panel panel-primary">
+    <div class="panel-heading">
+      New OperacionesCcp
+    </div>
+    <div class="panel-body">
+
+      <form data-ng-submit="vm.create()" novalidate>
+
+        <formly-form model="vm.operacionesCcp" fields="vm.formFields" form="vm.form">
+        </formly-form>
+
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Save
+            </button>
+            <a class="btn btn-danger" href="/operaciones-ccp">
+              <i class="glyphicon glyphicon-remove"></i> Cancel
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+-->
+</section>

@@ -1,0 +1,79 @@
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Abono a credito
+    </div>
+    <div class="panel-body">
+
+
+    <form name="vm.form"  data-ng-submit="vm.create2()" novalidate>
+<div class="row">
+<div class="col-xs-12 col-md-8">
+ <!--  <label>
+    Id Socio:  </label> -->
+
+       <input type="hidden" name="id_socio" readonly="readonly" ng-model="vm.pago.id_socio">
+        <label> Monto del credito: </label> Bs.F. {{vm.dato}},00 </br>
+             <label>Monto de pagos realizados: </label> Bs.F. {{vm.pagos| sumByKey:'monto'}},00 </br>
+       <label> Restante: </label> Bs.F. {{vm.dato - (vm.pagos| sumByKey:'monto') }},00
+    </br><label>   Monto:  </label>
+      <input type="number" name="monto" ng-model="vm.pago.monto" max=" {{vm.dato - (vm.pagos| sumByKey:'monto') }} " min="0">
+       </br> </br>
+   <!-- <label>
+       Id Credito: </label> {{vm.pago.id_credito}} -->
+        <input type="hidden" name="id_credito" readonly="readonly" ng-model="vm.pago.id_credito">
+     
+     <!-- <label> Id Usuario: </label> -->
+        <input type="hidden" name="id_usuario" readonly="readonly" ng-model="vm.pago.id_usuario">
+     
+      <input type="hidden" name="id_usuario" readonly="readonly" ng-model="vm.pago.descripcion">
+ 
+ 
+
+
+   
+    </br>
+   
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/socio/{{vm.pago.id_socio}}">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+
+      </form>
+
+    <!--  <form data-ng-submit="vm.create()" novalidate>
+
+        <formly-form model="vm.pago" fields="vm.formFields" form="vm.form">
+        </formly-form>
+
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Save
+            </button>
+            <a class="btn btn-danger" href="/pago">
+              <i class="glyphicon glyphicon-remove"></i> Cancel
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+-->
+    </div>
+  </div>
+
+</section>

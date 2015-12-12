@@ -8,9 +8,9 @@
 module.exports = {
 
   attributes: {
-titular: 'string',
-	numeroCuenta: 'string'
-
+	id_socio: 'string',
+	numeroCuenta: 'string',
+	id_usuario: 'string'
   }
 };
 

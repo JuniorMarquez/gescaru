@@ -1,0 +1,170 @@
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Nueva Solicitud de Credito
+    </div>
+     <div class="pull-right">
+<span class="label label-primary">
+ 
+ <i class="glyphicon glyphicon-briefcase"></i>  Cant. de C.C.P <span class="label label-warning"> {{vm.operaciones |sumByKey2:'tipoOperacion':'cantidad'}}
+  </span></span>
+<!--
+
+<h2>
+  <i class="glyphicon glyphicon-briefcase"></i>  <label>Cantidad de C.C.P </label><span class="label label-primary">{{vm.operaciones|sumByKey2:'tipoOperacion':'cantidad'}} 
+</span></h2>
+-->
+</div>
+    <div class="panel-body">
+
+
+<form name="vm.form"  data-ng-submit="vm.create()" novalidate>
+<div class="row">
+
+ <label>
+     <!-- Id Socio: --> </label>
+       <input type="hidden" name="id_socio" readonly="readonly" ng-model="vm.credito.id_socio ">
+       
+    <label>
+       Tipo de credito: </label>
+        <select class="form-control" name="tipoDeCredito"  id="tipoDeCredito" ng-model="vm.credito.tipoDeCredito">
+  <option>Interno</option>
+  <option>Externo</option>
+ 
+</select>
+
+     
+</br>
+    
+    </br>
+    <label>
+      Numero de meses:  </label>
+       <input type="number" name="numeroMeses" id="numeroMeses" ng-model="vm.credito.numeroMeses" onchange="vm.calculo()"max="{{vm.configuracion.numeroMeses}}" >
+
+<label>
+      Numero de Ccp:  </label>
+       <input type="number" name="numeroDeCcp" id="numeroDeCcp" ng-model="vm.credito.numeroDeCcp" onchange="vm.calculo()" min="1" max="{{vm.operaciones|sumByKey2:'tipoOperacion':'cantidad'}} "defaultValue="{{vm.operaciones|sumByKey2:'tipoOperacion':'cantidad'}} ">
+    </br> </br>
+    
+
+
+      <label>
+      Monto a solicitar: </label>
+       <input type="hidden" name="monto" id="monto" ng-model="vm.credito.monto"  >
+         <span class="label label-warning"> {{vm.credito.numeroDeCcp * vm.configuracion.eqCcp |number : 2}}</span>
+       
+
+
+       <label>
+        + Interes: </label>
+      <span class="label label-warning">Bs.F. {{
+
+((vm.credito.tasaInteres / 360)*(30*vm.credito.numeroMeses)) 
+* (vm.credito.numeroDeCcp * vm.configuracion.eqCcp)/100
+
+|number : 2}}</span>
+
+
+      <label>
+        Total: </label>
+        <span class="label label-warning"> Bs.F. {{(vm.credito.numeroDeCcp * vm.configuracion.eqCcp)+((vm.credito.tasaInteres / 360)*(30*vm.credito.numeroMeses))  * vm.credito.numeroDeCcp * vm.configuracion.eqCcp / 100 | number : 2}}</span>
+    </br>
+     </br>
+ <label>  Tasa de Interes: 
+      <!--Id Usuario: --> 
+       <input type="hidden" name="id_usuario" ng-model="vm.credito.id_usuario" >
+</label> {{vm.credito.tasaInteres}} % Anual
+</br>
+   
+
+   
+    
+       <label>
+         Indique la cedula del socio fiador</label>
+         <input type="number" name="cedula" ng-model="vm.cedula" >
+       <i class="glyphicon glyphicon-search"></i>
+       <input type="button" class="btn btn-success"  value="Buscar" ng-click="vm.buscar()" /> 
+             <ul>
+              {{vm.info[0].nombres}}  {{vm.info[0].cedula}}
+       
+  </ul>
+  <label>
+    <!-- Id Socio Fiador: --> </label>
+       <input type="hidden" name="id_socioFiador" required="required" eadonly="readonly" ng-model="vm.credito.id_socioFiador">
+
+</br> 
+   
+    </br>
+   
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/socio/{{vm.credito.id_socio}}">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+        
+<!--<script language="javascript">  
+function calculo(){
+   
+   var a = document.getElementById("numeroDeCcp");  
+    var b = 5;  
+    var c = document.getElementById("monto");  
+   // aqui puedes hacer validaciones para asegurarte que los valores de A y B sean numeros, etc  
+   c.value = a.value * b; 
+   vm.credito.monto=c.value;
+  } 
+
+  </script>-->
+  <!--<script language="javascript">  
+function calculo(){
+   $http.get('http://localhost:1337/config/55a95c87ebe973e1080ff5f0').success(function(respuesta3){
+            //console.log("res:", respuesta);
+            vm.configuracion = respuesta3; });
+   
+   var a = document.getElementById("numeroDeCcp");  
+    var b = vm.configuracion.eqCcp;  
+    
+   // aqui puedes hacer validaciones para asegurarte que los valores de A y B sean numeros, etc  
+   c.value = a.value * b; 
+   vm.credito.monto = c.value;
+   vm.credito.eqCcp = vm.configuracion.eqCcp; 
+  } 
+-->
+  </script>
+      </form>
+
+
+<!--
+      <form data-ng-submit="vm.create()" novalidate>
+
+        <formly-form model="vm.credito" fields="vm.formFields" form="vm.form">
+        </formly-form>
+
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Save
+            </button>
+            <a class="btn btn-danger" href="/credito">
+              <i class="glyphicon glyphicon-remove"></i> Cancel
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+-->
+    
+  </div>
+
+</section>

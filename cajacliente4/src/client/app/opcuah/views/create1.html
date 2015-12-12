@@ -1,0 +1,74 @@
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Registro de Deposito
+    </div>
+    <div class="panel-body">
+<!--
+ <form name="vm.form"  model="vm.opcuah" data-ng-submit="vm.create()" novalidate>
+    <label>
+       Id Socio 
+    </label>
+       <input type="text" name="id_socio"  id="id_socio" ng-model="vm.opcuah.id_socio">
+ </br> </br>
+     <label>
+    Id Cuenta: </label>
+        <input type="text" name="id_cuenta"  id="id_cuenta"readonly="readonly" ng-model="vm.opcuah.id_cuenta">
+       </br> </br>
+   
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-xs" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/cuent">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>-->
+
+
+      <form name="vm.form" model="vm.opcuah" data-ng-submit="vm.create1()" novalidate>
+          <!--
+        <formly-form model="vm.opcuah" fields="vm.formFields" form="vm.form">
+        </formly-form>
+<label>Tipo de Operacion: </label>
+        <select class="form-control" name="tipoOperacion"  id="tipoOperacion" ng-model="vm.opcuah.tipoOperacion">
+  <option>Deposito</option>
+  <option>Retiro</option>
+
+ 
+</select>-->
+<input type="hidden" name="id_cuenta" readonly="readonly" ng-model="vm.opcuah.id_cuenta ">
+<input type="hidden" name="tipoOperacion" readonly="readonly" ng-model="vm.opcuah.tipoOperacion">
+</br>
+<label>Monto: </label>
+  
+ <input type="number" name="monto" id="monto" ng-model="vm.opcuah.monto" min="0" >
+
+
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/cuent/{{vm.opcuah.id_cuenta}}">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</section>

@@ -8,8 +8,23 @@
 module.exports = {
 
   attributes: {
-  	nombre: 'string',
-  	cedula: 'string'
+  	nombres: 'string',
+  	apellidos:'string',
+  	cedula: 'string',
+  	nacionalidad: 'string',
+  	estadoCivil: 'string',
+  	fechaDeNacimiento: 'string',
+  	direccion: 'string',
+  	telefono: 'string',
+  	correo: 'string',
+  	ingresoMensual: 'string',
+  	profesion: 'string',
+  	gradoDeInstruccion: 'string',
+  	ocupacion: 'string',
+  	origenDeIngresos: 'string',
+    usuario:'string',
+    pass:'string',
+    tipoUsuario:'string'
   }
 };
 

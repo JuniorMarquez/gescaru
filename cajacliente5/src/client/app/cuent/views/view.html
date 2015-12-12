@@ -1,0 +1,97 @@
+<section class="mainbar" data-ng-init="vm.toViewCuent()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de Cuenta
+    </div>
+    <div class="panel-body">
+
+
+   <div class="pull-right">
+<h1>
+
+  <i class="glyphicon glyphicon-briefcase"></i> Saldo:
+</h1> 
+<h2>
+   Bs.F. {{vm.oper|sumByKey4:'tipoOperacion':'monto'}},00 
+</h2>
+
+</div>
+      <form novalidate model="vm.cuent">
+       <!-- <formly-form model="vm.cuent" fields="vm.formFields">
+        </formly-form>   
+        -->
+        <label>
+  Numero de cuenta: </label> {{vm.cuent.numeroCuenta}}
+</br>
+<label>
+  Titular: </label> {{vm.cuent.titular}} {{vm.cuent.titularap}}
+</br>
+      <label>
+  Fecha de Apertura: </label> {{vm.cuent.createdAt| date}}
+</br>
+ 
+
+
+
+      </form>
+
+      <hr/>
+      <!--
+      <div>
+        <a class="btn btn-success" href="/cuent/{{vm.cuent.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Esta seguro ?" ng-really-click="vm.remove()" item="vm.cuent">
+          <i class="glyphicon glyphicon-remove-circle"></i> Borrar
+        </a>
+        <a class="btn btn-primary" href="/cuent">
+          <i class="glyphicon glyphicon-list"></i> Listado de Cuentas
+        </a>
+      </div>
+      -->
+       <!--<a type="button" ng-click="vm.aperturar()"class="btn btn-success" href="/opcuah/create1">
+          <i class="glyphicon glyphicon-open"></i> Registrar Deposito
+        </a>
+        <a type="button" ng-click="vm.aperturar()"class="btn btn-success" href="/opcuah/create2">
+          <i class="glyphicon glyphicon-open"></i> Registrar Retiro
+        </a>
+        <a type="button" ng-click="vm.aperturar()"class="btn btn-primary" href="/socio/{{vm.cuent.id_socio}}">
+          <i class="glyphicon glyphicon-chevron-left"></i> Volver
+        </a>-->
+
+
+</br></br>Operaciones :</br></br>
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="dato in vm.operacionesPorCuenta">
+              <td data-title="'Fecha'" ><center>{{dato.createdAt | date}}</center></td>
+
+
+             
+
+<td data-title="'Tipo de Operacion'"><center> {{dato.tipoOperacion}}</center></td>
+              <td data-title="'Monto'">Bs.F. {{dato.monto}},00</td>
+              <td>
+              <!--
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="View" href="/operaciones-cuenta-ahorro/{{pais.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Edit" href="/operaciones-cuenta-ahorro/{{pais.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Remove" ng-really-message="Are you sure ?" ng-really-click="vm.remove(operacionesCuentaAhorro)" item="operacionesCuentaAhorro">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+                  -->
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+
+ 
+</section>

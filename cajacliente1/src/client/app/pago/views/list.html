@@ -1,0 +1,45 @@
+<section class="mainbar">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Listado de Pagos
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+    <!--    <a type="button" class="btn btn-success" href="/pago/create">
+          <i class="glyphicon glyphicon-open"></i> New Pago
+        </a>
+
+
+        //filter="{ 'createdAt': 'text' }"
+
+
+        //ilter="{'monto': 'text'}"
+    -->  </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="pago in $data">
+              <td data-title="'Fecha'" sortable="'fecha'"  >{{pago.createdAt | date}}</td>
+              <td data-title="'Id Credito'" sortable="'address'" filter="{'id_credito': 'text'}">{{pago.id_credito}}</td>
+              <td data-title="'Monto'" sortable="'monto'" f>Bs.F. {{pago.monto}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="Ver Detalles" href="/pago/{{pago.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                      <a class="btn btn-default btn-xs" title="Editar" href="/pago/{{pago.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borarr" ng-really-message="Esta Usted seguro ?" ng-really-click="vm.remove(pago)" item="pago">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+</section>

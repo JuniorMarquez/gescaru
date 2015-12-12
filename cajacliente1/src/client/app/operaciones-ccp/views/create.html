@@ -1,0 +1,105 @@
+<section class="mainbar" data-ng-init="vm.setFormFields()">
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      Compra de CCP
+    </div>
+    <div class="panel-body">
+
+<form name="vm.form"  data-ng-submit="vm.create()" novalidate>
+   <!-- <label>
+       Tipo de Operacion: </label>-->
+       <input type="hidden" name="tipoOperacion"  id="tipoOperacion" ng-model="vm.operacionesCcp.tipoOperacion" disabled="disabled" readonly="readonly">
+</br>
+     <label>
+      Cantidad:  </label>
+       <input type="number" name="cantidad" id="cantidad" ng-model="vm.operacionesCcp.cantidad"min="1" max="999999999"
+       onchange="calculo()">
+    </br>
+    <label>
+      Monto: </label>  Bs.F. {{vm.operacionesCcp.cantidad *vm.configuracion.precioCcp}},00
+       <input type="hidden" name="monto" id="monto" ng-model="vm.operacionesCcp.monto" >
+    </br>
+
+    <label>
+     <!-- Id Socio:-->  </label>
+       <input type="hidden" name="id_socio" ng-model="vm.operacionesCcp.id_socio ">
+        <label>
+     <!-- Id Socio:-->  </label>
+       <input type="hidden" name="precioCcp" ng-model="vm.operacionesCcp.precioCcp">
+    </br>
+    </br>
+    <label>
+     <!-- Id Usuario:-->  </label>
+       <input type="hidden" name="id_usuario" ng-model="vm.operacionesCcp.id_usuario">
+    </br>
+   
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Guardar
+            </button>
+            <a class="btn btn-danger" href="/socio/{{vm.operacionesCcp.id_socio}}">
+              <i class="glyphicon glyphicon-remove"></i> Cancelar
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+        
+<script language="javascript">  
+function calculo(){
+  $http.get('http://localhost:1337/config/55a95c87ebe973e1080ff5f0').success(function(respuesta3){
+            //console.log("res:", respuesta);
+            vm.configuracion = respuesta3; });
+   
+   var a = document.getElementById("cantidad");  
+    var b = vm.configuracion.precioCcp;  
+    
+   // aqui puedes hacer validaciones para asegurarte que los valores de A y B sean numeros, etc  
+   c.value = a.value * b; 
+   vm.operacionesCcp.monto = c.value;
+   vm.operacionesCcp.precioCcp = vm.configuracion.precioCcp; 
+  } 
+
+  </script>
+      </form>
+
+
+
+</div>
+  </div>
+
+
+  <!-- <div class="panel panel-primary">
+    <div class="panel-heading">
+      New OperacionesCcp
+    </div>
+    <div class="panel-body">
+
+      <form data-ng-submit="vm.create()" novalidate>
+
+        <formly-form model="vm.operacionesCcp" fields="vm.formFields" form="vm.form">
+        </formly-form>
+
+        <hr/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" ng-disabled="vm.form.$invalid">
+              <i class="glyphicon glyphicon-ok"></i> Save
+            </button>
+            <a class="btn btn-danger" href="/operaciones-ccp">
+              <i class="glyphicon glyphicon-remove"></i> Cancel
+            </a>
+        </div>
+
+        <div data-ng-show="vm.error" class="alert alert-danger form-group">
+          <strong data-ng-bind="vm.error"></strong>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+-->
+</section>

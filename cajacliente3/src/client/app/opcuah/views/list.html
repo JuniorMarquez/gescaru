@@ -1,0 +1,45 @@
+<section class="mainbar">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Listado de operaciones en cuentas de ahorro
+    </div>
+    <div class="panel-body">
+
+      <div class="pull-right">
+      <!--  <a type="button" class="btn btn-success" href="/opcuah/create">
+          <i class="glyphicon glyphicon-open"></i> New Opcuah
+        </a>
+
+
+filter="{'monto': 'text'}"
+filter="{'createdAt': 'text'}"
+        -->
+      </div>
+
+      <table ng-table="vm.tableParams" show-filter="true" class="table table-condensed table-striped">
+          <tr ng-repeat="opcuah in $data">
+              <td data-title="'Tipo de Operacion'" sortable="'tipoOperacion'" filter="{ 'tipoOperacion': 'text' }">{{opcuah.tipoOperacion}}</td>
+              <td data-title="'Monto'" sortable="'monto'" >{{opcuah.monto}}</td>
+              <td>
+              <td data-title="'Fecha'" sortable="'createdAt'" >{{opcuah.createdAt|date}}</td>
+              <td>
+                 <div class="table-actions">
+                      <a class="btn btn-default btn-xs" title="Detalles de Operacion" href="/opcuah/{{opcuah.id}}">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                      </a>
+                    <!--  <a class="btn btn-default btn-xs" title="Editar" href="/opcuah/{{opcuah.id}}/edit">
+                        <span class="glyphicon glyphicon-edit"></span>
+                      </a>
+                      <a class="btn btn-danger btn-xs" title="Borrar" ng-really-message="Esta Usted seguro ?" ng-really-click="vm.remove(opcuah)" item="opcuah">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                      </a>-->
+                  </div>
+              </td>
+          </tr>
+      </table>
+
+    </div>
+  </div>
+
+</section>

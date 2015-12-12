@@ -1,0 +1,37 @@
+<section class="mainbar" data-ng-init="vm.toViewOperacionesCcp()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de Operacion con CCP
+    </div>
+
+
+<span class="label label-primary">
+  <i class="glyphicon glyphicon-briefcase"></i>  Saldo Cta. de Ahorro: <span class="label label-warning">{{vm.paises|sumByKey:'monto'}}</span>
+ <i class="glyphicon glyphicon-briefcase"></i>  Cant. de C.C.P <span class="label label-warning"> {{vm.operaciones |sumByKey2:'tipoOperacion':'cantidad'}}
+  </span></span>
+    
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.operacionesCcp" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+      <!--  <a class="btn btn-success" href="/operaciones-ccp/{{vm.operacionesCcp.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="esta Usted Seguro ?" ng-really-click="vm.remove()" item="vm.operacionesCcp">
+          <i class="glyphicon glyphicon-remove-circle"></i> Borrar
+        </a>-->
+        <a class="btn btn-primary" href="/operaciones-ccp">
+          <i class="glyphicon glyphicon-list"></i> Listado de Operaciones CCP
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>

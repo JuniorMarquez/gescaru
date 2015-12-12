@@ -1,0 +1,30 @@
+<section class="mainbar" data-ng-init="vm.toViewPago()">
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+			Detalles de Pago
+    </div>
+    <div class="panel-body">
+
+      <form novalidate>
+        <formly-form model="vm.pago" fields="vm.formFields">
+        </formly-form>
+      </form>
+
+      <hr/>
+      <div>
+        <a class="btn btn-success" href="/pago/{{vm.pago.id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i> Editar
+        </a>
+        <a class="btn btn-danger" title="Remove" ng-really-message="Esta Usted seguro ?" ng-really-click="vm.remove()" item="vm.pago">
+          <i class="glyphicon glyphicon-remove-circle"></i> borrar
+        </a>
+        <a class="btn btn-primary" href="/pago">
+          <i class="glyphicon glyphicon-list"></i> Listado de Pagos
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</section>
